@@ -1,0 +1,40 @@
+/*
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+You must write an algorithm with O(log n) runtime complexity.
+*/
+
+#include<iostream>
+using namespace std;
+
+int searchinsert(int arr[],int n){
+	int target,index;
+	cout<<"Enter the value"<<endl;
+	cin>>target;
+	
+	int start=0,end=n-1;
+	while(start<=end){
+		int mid=start+(end-start)/2;
+		index=mid+1;
+		if(arr[mid]==target)
+			return mid;
+		else if(arr[mid]>target)
+			end=mid-1;
+		else
+			start=mid+1;
+	}
+	return index;
+}
+
+int main(){
+	int n,arr[100];
+	cout<<"Enter the size of the array"<<endl;
+	cin>>n;
+	
+	cout<<"Enter the elements in the array"<<endl;
+	for(int i=0;i<n;i++){
+		cin>>arr[i];
+	}
+	
+	int index=searchinsert(arr,n);
+	cout<<index;
+}
